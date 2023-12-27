@@ -24,11 +24,28 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = async (username: string, password: string) => {
     try {
       const response = await loginApi(username, password);
-      const authToken = response?.data?.token;
+      console.log(response);
+      const authToken = response?.token;
+      const id = response?.id;
+      const userName = response?.username;
+      const email = response?.email;
+      const firstName = response?.firstName;
+      const lastName = response?.lastName;
+      const gender = response?.gender;
+      const image = response?.image;
 
       if (authToken) {
         setToken(authToken);
         localStorage.setItem('token', authToken);
+        localStorage.setItem('id', id);
+        localStorage.setItem('userName', userName);
+        localStorage.setItem('email', email);
+        localStorage.setItem('firstName', firstName);
+        localStorage.setItem('lastName', lastName);
+        localStorage.setItem('gender', gender);
+        localStorage.setItem('image', image);
+
+
       } else {
         throw new Error('Invalid response from the server');
       }

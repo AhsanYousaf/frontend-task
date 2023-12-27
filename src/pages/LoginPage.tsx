@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from '../authentication/AuthContext';
 import RightSideImage from ".././assets/rightColumn.png";
 import MainIcon from ".././assets/mainIcon.svg";
 import EyeIcon from ".././assets/eyeIcon.svg";
@@ -8,6 +9,18 @@ import GoogleIcon from ".././assets/googleLogoIcon.svg";
 const LoginPage = () => {
     const [formData, setFormData] = useState({ userName: "", password: "" });
     const [show, setShow] = useState(false);
+
+    const { login } = useAuth();
+
+    const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        await login(formData.userName, formData.password);
+  
+      } catch (e: any) {
+        console.log(e?.response?.data?.message)
+      }
+    };
 
     return (
         <div className="flex flex-col lg:flex-row justify-center items-center h-screen w-full">
@@ -22,7 +35,7 @@ const LoginPage = () => {
                 <p className="lg:text-[18px] lg:font-[300] text-[16px] font-[300]">
                     You need to be signed in to access the project dashboard.
                 </p>
-                <form>
+                <form onSubmit={handelSubmit}>
                     <div className="flex flex-col gap-2 w-full mt-6 lg:text-[16px] lg:font-[500] text-[15px] font-[500]">
                         <label>Email or username</label>
                         <input
