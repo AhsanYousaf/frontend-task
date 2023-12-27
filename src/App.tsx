@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={token ? <Navigate to="/landing-page" /> : <LoginPage />} />
-          <Route path="/landing-page" element={token ? <MainPage /> : <Navigate to="/landing-page" />} />
+          <Route path="/landing-page" element={token ? <MainPage /> : <Navigate to="/" />} />
           <Route path="/404" element={<PageNotFound />} />
           <Route path="*" element={<Navigate to="/404" replace />} />
         </Routes>

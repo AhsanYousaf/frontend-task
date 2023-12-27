@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from '../authentication/AuthContext';
+import CommonButton from "../components/CommonButton"
 import RightSideImage from ".././assets/rightColumn.png";
 import MainIcon from ".././assets/mainIcon.svg";
 import EyeIcon from ".././assets/eyeIcon.svg";
@@ -77,7 +78,7 @@ const LoginPage = () => {
                         </div>
                     </div>
                     <div className="mt-4">
-                        <button className='w-full bg-[#50F89A] border border-[#00E687] py-[14px] px-[12px] rounded-sm '>Sign in</button>
+                        <CommonButton btnClasses='w-full bg-[#50F89A] border border-[#00E687] py-[14px] px-[12px] rounded-sm' btnText='Sign in' />
                         <div className="w-full flex justify-center border border-[#CFD8E1] py-[14px] px-[12px] mt-6 rounded-sm gap-2 cursor-pointer">
                             <img src={GoogleIcon} alt="GoogleIcon" />
                             <div>Sign in with Google</div>
