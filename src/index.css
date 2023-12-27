@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'SoraVariable';
+    src: url('./fonts/Sora-VariableFont_wght.ttf') format('truetype');
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 60px;
+    letter-spacing: -0.96px; 
+}
+
+body {
+    font-family: sans-serif;
+}
