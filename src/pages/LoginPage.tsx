@@ -10,9 +10,9 @@ import OpenEyeIcon from ".././assets/openEyeIcon.svg";
 import GoogleIcon from ".././assets/googleLogoIcon.svg";
 
 const LoginPage = () => {
-    const [formData, setFormData] = useState({ userName: "", password: "" });
-    const [show, setShow] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [formData, setFormData] = useState<any>({ userName: "", password: "" });
+    const [show, setShow] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
 
     const { login } = useAuth();
