@@ -6,25 +6,30 @@ import MainIcon from ".././assets/mainIcon.svg";
 import EyeIcon from ".././assets/eyeIcon.svg";
 import OpenEyeIcon from ".././assets/openEyeIcon.svg";
 import GoogleIcon from ".././assets/googleLogoIcon.svg";
+import { Error } from "../components/ErrorModal";
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({ userName: "", password: "" });
     const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(false);
+
 
     const { login } = useAuth();
 
     const handelSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      try {
-        await login(formData.userName, formData.password);
-  
-      } catch (e: any) {
-        console.log(e?.response?.data?.message)
-      }
+        e.preventDefault();
+        setLoading(true);
+        try {
+            await login(formData.userName, formData.password);
+            setLoading(false);
+        } catch (error: any) {
+            setLoading(false);
+            Error(error?.message, true, false);
+        }
     };
 
     return (
-        <div className="flex flex-col lg:flex-row justify-center items-center h-screen w-full">
+        <div className="flex flex-col lg:flex-row justify-center items-center h-screen w-full text-[#222B33]">
             <div className="w-full lg:w-[43%] h-screen px-[74px]">
                 <img className="mt-4" src={MainIcon} alt="MainIcon" />
                 <p style={{ fontFamily: 'SoraVariable' }} className="lg:text-[64px] lg:font-[600] text-[38px] font-[550] mt-4">
@@ -78,8 +83,8 @@ const LoginPage = () => {
                         </div>
                     </div>
                     <div className="mt-4">
-                        <CommonButton btnClasses='w-full bg-[#50F89A] border border-[#00E687] py-[14px] px-[12px] rounded-sm' btnText='Sign in' />
-                        <div className="w-full flex justify-center border border-[#CFD8E1] py-[14px] px-[12px] mt-6 rounded-sm gap-2 cursor-pointer">
+                        <CommonButton btnClasses='w-full bg-[#50F89A] hover:bg-[#50F87A] border border-[#00E687] py-[14px] px-[12px] rounded-sm' btnText={loading ? 'Loading...' : 'Sign in'} isSubmit={true} />
+                        <div className="w-full flex justify-center border border-[#CFD8E1] hover:bg-[#CFD8E1] py-[14px] px-[12px] mt-6 rounded-sm gap-2 cursor-pointer">
                             <img src={GoogleIcon} alt="GoogleIcon" />
                             <div>Sign in with Google</div>
                         </div>
