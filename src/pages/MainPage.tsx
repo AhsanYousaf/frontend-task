@@ -4,7 +4,7 @@ const MainPage = () => {
     return (
         <div style={{ fontFamily: 'SoraVariable' }} className="w-full h-screen">
             <div className='bg-[#077b8a] w-full h-[10%] p-4 flex justify-between text-white'>
-                <p className="text-[26px] font-[600]">Landing Page</p>
+                <p className="text-[26px] font-[600]">User Information</p>
                 <button className='bg-[#d72631] text-white p-2 rounded-md hover:bg-red-500'>Logout</button>
             </div>
             <div className="w-full h-[90%] flex flex-col justify-center items-center bg-[#a2d5c6]">
@@ -28,11 +28,6 @@ const MainPage = () => {
                             <p>{localStorage.getItem('email')}</p>
                             <p>{localStorage.getItem('gender')}</p>
                         </div>
-                        {/* <p>Username:{" "}{localStorage.getItem('userName')}</p>
-                        <p>Firstname:{" "}{localStorage.getItem('firstName')}</p>
-                        <p>Lastname:{" "}{localStorage.getItem('lastName')}</p>
-                        <p>Email:{" "}{localStorage.getItem('email')}</p>
-                        <p>Gender:{" "}{localStorage.getItem('gender')}</p> */}
                     </div>
                 </div>
             </div>
