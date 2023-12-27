@@ -58,7 +58,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const logout = () => {
     setToken(null);
     localStorage.removeItem('token');
-  };
+    localStorage.removeItem('id');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('email');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('gender');
+    localStorage.removeItem('image')
+};
 
   const isTokenExpired = () => {
     const storedToken = localStorage.getItem('token');

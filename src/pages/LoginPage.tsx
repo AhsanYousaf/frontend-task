@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useAuth } from '../authentication/AuthContext';
+import { Error } from "../components/ErrorModal";
+import LazyLoad from "react-lazy-load";
 import CommonButton from "../components/CommonButton"
 import RightSideImage from ".././assets/rightColumn.png";
 import MainIcon from ".././assets/mainIcon.svg";
 import EyeIcon from ".././assets/eyeIcon.svg";
 import OpenEyeIcon from ".././assets/openEyeIcon.svg";
 import GoogleIcon from ".././assets/googleLogoIcon.svg";
-import { Error } from "../components/ErrorModal";
 
 const LoginPage = () => {
     const [formData, setFormData] = useState({ userName: "", password: "" });
@@ -31,7 +32,9 @@ const LoginPage = () => {
     return (
         <div className="flex flex-col lg:flex-row justify-center items-center h-screen w-full text-[#222B33]">
             <div className="w-full lg:w-[43%] h-screen px-[74px]">
-                <img className="mt-4" src={MainIcon} alt="MainIcon" />
+                <LazyLoad>
+                    <img className="mt-4" src={MainIcon} alt="MainIcon" />
+                </LazyLoad>
                 <p style={{ fontFamily: 'SoraVariable' }} className="lg:text-[64px] lg:font-[600] text-[38px] font-[550] mt-4">
                     Welcome
                 </p>
@@ -58,12 +61,14 @@ const LoginPage = () => {
                                 className="bg-[#F9FAFB] outline-none w-[90%] px-[10px] py-[12px]"
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                             />
-                            <img
-                                src={!show ? EyeIcon : OpenEyeIcon}
-                                alt="eyeIcon"
-                                onClick={() => setShow(!show)}
-                                className="cursor-pointer w-[10%] md:p-2 p-1.5"
-                            />
+                            <LazyLoad>
+                                <img
+                                    src={!show ? EyeIcon : OpenEyeIcon}
+                                    alt="eyeIcon"
+                                    onClick={() => setShow(!show)}
+                                    className="cursor-pointer w-[10%] md:p-2 p-1.5"
+                                />
+                            </LazyLoad>
                         </div>
                     </div>
                     <div className="flex justify-between gap-3 mt-4">
@@ -85,7 +90,9 @@ const LoginPage = () => {
                     <div className="mt-4">
                         <CommonButton btnClasses='w-full bg-[#50F89A] hover:bg-[#50F87A] border border-[#00E687] py-[14px] px-[12px] rounded-sm' btnText={loading ? 'Loading...' : 'Sign in'} isSubmit={true} />
                         <div className="w-full flex justify-center border border-[#CFD8E1] hover:bg-[#CFD8E1] py-[14px] px-[12px] mt-6 rounded-sm gap-2 cursor-pointer">
-                            <img src={GoogleIcon} alt="GoogleIcon" />
+                            <LazyLoad>
+                                <img src={GoogleIcon} alt="GoogleIcon" />
+                            </LazyLoad>
                             <div>Sign in with Google</div>
                         </div>
                     </div>
@@ -100,7 +107,9 @@ const LoginPage = () => {
                 </form>
             </div>
             <div className="w-full lg:w-[57%] h-screen lg:block hidden">
-                <img className="w-full h-screen" src={RightSideImage} alt="RightSideImage" />
+                <LazyLoad>
+                    <img className="w-full h-screen" src={RightSideImage} alt="RightSideImage" />
+                </LazyLoad>
             </div>
         </div>
     );
