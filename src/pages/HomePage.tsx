@@ -5,6 +5,8 @@ import CommonButton from "../components/CommonButton"
 const HomePage = () => {
 
     const { logout } = useAuth();
+    const { userInfo: userInfo } = useAuth();
+    console.log(userInfo);
 
     const handelLogout = () => {
         logout();
@@ -34,11 +36,11 @@ const HomePage = () => {
                             <p>Gender:</p>
                         </div>
                         <div>
-                            <p>{localStorage.getItem('userName')}</p>
-                            <p>{localStorage.getItem('firstName')}</p>
-                            <p>{localStorage.getItem('lastName')}</p>
-                            <p>{localStorage.getItem('email')}</p>
-                            <p>{localStorage.getItem('gender')}</p>
+                            <p>{userInfo?.username}</p>
+                            <p>{userInfo?.firstName}</p>
+                            <p>{userInfo?.lastName}</p>
+                            <p>{userInfo?.email}</p>
+                            <p>{userInfo?.gender}</p>
                         </div>
                     </div>
                 </div>

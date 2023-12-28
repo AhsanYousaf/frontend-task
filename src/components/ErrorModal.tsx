@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 
-export const Error = (message: string, err: Boolean,  success: Boolean) => {
+export const ErrorModal = (message: string, err: Boolean, success: Boolean) => {
   Swal.fire({
     title: success ? "Success" : "Failed",
     icon: err ? "error" : "success",

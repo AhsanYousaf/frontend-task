@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from '../authentication/AuthContext';
-import { Error } from "../components/ErrorModal";
+import { ErrorModal } from "../components/ErrorModal";
 import LazyLoad from "react-lazy-load";
 import CommonButton from "../components/CommonButton"
 import RightSideImage from ".././assets/rightColumn.png";
@@ -25,7 +25,7 @@ const LoginPage = () => {
             setLoading(false);
         } catch (error: any) {
             setLoading(false);
-            Error(error?.message, true, false);
+            ErrorModal(error?.message, true, false);
         }
     };
 
@@ -61,14 +61,12 @@ const LoginPage = () => {
                                 className="bg-[#F9FAFB] outline-none w-[90%] px-[10px] py-[12px]"
                                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                             />
-                            <LazyLoad>
-                                <img
-                                    src={!show ? EyeIcon : OpenEyeIcon}
-                                    alt="eyeIcon"
-                                    onClick={() => setShow(!show)}
-                                    className="cursor-pointer w-[10%] md:p-2 p-1.5"
-                                />
-                            </LazyLoad>
+                            <img
+                                src={!show ? EyeIcon : OpenEyeIcon}
+                                alt="eyeIcon"
+                                onClick={() => setShow(!show)}
+                                className="cursor-pointer w-[10%] md:p-2 p-1.5"
+                            />
                         </div>
                     </div>
                     <div className="flex justify-between gap-3 mt-4">

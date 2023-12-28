@@ -4,6 +4,14 @@ import { jwtDecode } from 'jwt-decode';
 
 interface AuthContextProps {
   token: string | null;
+  userInfo: {
+    id: number,
+    username: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    gender: string,
+  };
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
 }
@@ -20,32 +28,24 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [token, setToken] = useState<string | null>(() => localStorage.getItem('token'));
+  const [userInfo, setUserInfo] = useState<AuthContextProps['userInfo']>({
+    id: 0,
+    username: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    gender: '',
+  });
 
   const login = async (username: string, password: string) => {
     try {
       const response = await loginApi(username, password);
-      console.log(response);
+      const userInformation = response;
       const authToken = response?.token;
-      const id = response?.id;
-      const userName = response?.username;
-      const email = response?.email;
-      const firstName = response?.firstName;
-      const lastName = response?.lastName;
-      const gender = response?.gender;
-      const image = response?.image;
 
       if (authToken) {
         setToken(authToken);
-        localStorage.setItem('token', authToken);
-        localStorage.setItem('id', id);
-        localStorage.setItem('userName', userName);
-        localStorage.setItem('email', email);
-        localStorage.setItem('firstName', firstName);
-        localStorage.setItem('lastName', lastName);
-        localStorage.setItem('gender', gender);
-        localStorage.setItem('image', image);
-
-
+        setUserInfo(userInformation);
       } else {
         throw new Error('Invalid response from the server');
       }
@@ -58,14 +58,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const logout = () => {
     setToken(null);
     localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    localStorage.removeItem('userName');
-    localStorage.removeItem('email');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('lastName');
-    localStorage.removeItem('gender');
-    localStorage.removeItem('image')
-};
+  };
 
   const isTokenExpired = () => {
     const storedToken = localStorage.getItem('token');
@@ -86,6 +79,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const contextValue: AuthContextProps = {
     token,
+    userInfo,
     login,
     logout,
   };
