@@ -17,7 +17,7 @@ const HomePage = () => {
         <div style={{ fontFamily: 'SoraVariable' }} className="w-full h-screen">
             <div className='bg-[#077b8a] w-full h-[10%] p-4 flex justify-between text-white'>
                 <p className="text-[26px] font-[600]">Home Page</p>
-                <CommonButton btnText="Logout" btnClasses="bg-[#d72631] text-white p-2 rounded-md hover:bg-red-500" btnClick={handelLogout} />
+                <CommonButton btnText="Logout" btnClasses="bg-[#d72631] text-white py-2 px-4 rounded-md hover:bg-red-500" btnClick={handelLogout} />
             </div>
             <div className="w-full h-[90%] flex flex-col justify-center items-center bg-[#a2d5c6]">
                 <p className="text-[#5c3c92] text-[64px]">Welcome back</p>

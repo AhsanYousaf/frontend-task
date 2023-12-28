@@ -48,6 +48,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (authToken) {
         setToken(authToken);
         setUserInfo(userInformation);
+        localStorage.setItem('token', authToken);
       } else {
         throw new Error('Invalid response from the server');
       }
