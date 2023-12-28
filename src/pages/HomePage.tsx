@@ -12,7 +12,7 @@ const HomePage = () => {
         logout();
     };
 
-    const userImage = localStorage.getItem('image');
+    const userImage = userInfo?.image;
     return (
         <div style={{ fontFamily: 'SoraVariable' }} className="w-full h-screen">
             <div className='bg-[#077b8a] w-full h-[10%] p-4 flex justify-between text-white'>

@@ -11,6 +11,7 @@ interface AuthContextProps {
     lastName: string,
     email: string,
     gender: string,
+    image: string,
   };
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
@@ -35,6 +36,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     lastName: '',
     email: '',
     gender: '',
+    image: ''
   });
 
   const login = async (username: string, password: string) => {
